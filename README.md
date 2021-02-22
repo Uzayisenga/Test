@@ -1,7 +1,7 @@
 # README
 
 Overview
-hyuga is a simple web application is developed in the intention of giving a function to the users to review movies and TV shows.This application has a function where users can create a user account and sign up for services to view others users review and also user can Create, Read, Update, and Delete reviews of movies or TV shows they've seen. 
+Cashew is a simple web application designed to fill in the market gap for movie review platform for the local movie industry in Ghana. It provides a platform for movie watchers to share their opinion on movies, and for movie creators to evaluate the critical reception of their viewers to support towards the growth of the local movie industry.This application has a function where users can create a user account and sign up for services to view others users review and also user can Create, Read, Update, and Delete reviews of movies or TV shows they've seen. Some users will be granted special privileges to create movies for review. 
 
 Version Ruby 2.6.5 Rails 5.2.4
 
@@ -26,4 +26,11 @@ Screen wire frame: https://cacoo.com/diagrams/KNizHA7goMglTXpx/87F54
 
 ERD flowchat: https://drive.google.com/file/d/1nCHTNKJABl_LLy3-r4uBKlkOjOZCh4c7/view?usp=sharing
 
-Gems: Devise, carrierwave, mini_magick, searchkick, dotenv-rails, omniauth, omniauth-github, paperclip
+Gems and functions
+- Devise
+- comment function
+- carrierwave
+- mini_magick
+- searchkick
+- dotenv-rails
+- paperclip
