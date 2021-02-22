@@ -3,7 +3,7 @@
 Overview
 hyuga is a simple web application is developed in the intention of giving a function to the users to review movies and TV shows.This application has a function where users can create a user account and sign up for services to view others users review and also user can Create, Read, Update, and Delete reviews of movies or TV shows they've seen. The user can also create their favorite movies list.
 
-Version Ruby 2.6.5 Rails 6.1.3
+Version Ruby 2.6.5 Rails 5.2.4
 
 Functions
 - Create Users (user)
