@@ -1,0 +1,15 @@
+<h3>Send with the following contents</h3>
+<%= form_with(model: @movie, url: movies_path, local: true) do |form| %>
+  <%= form.hidden_field :title %>
+  <%= form.hidden_field :playtime %>
+  <%= form.hidden_field :director %>
+  <%= form.hidden_field :description %>
+  <%= form.hidden_field :movie_img %>
+  <p><%= @movie.title %></p>
+  <p><%= @movie.playtime %></p>
+  <p><%= @movie.director %></p>
+  <p><%= @movie.description %></p>
+  <p><%= @movie.movie_img %></p>
+  <%= form.submit  "register" %>
+  <%= form.submit "Return", name: 'back' %>
+<% end %>

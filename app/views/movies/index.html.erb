@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Movies</h1>
+<%= link_to 'New Movie', new_movie_path %>
+
+  <% @movies.each do |movie| %>
+  <div class="">
+    <p><%= movie.title %></p>
+    <a href="/movies/<%= movie.id %>">
+    <%= image_tag movie.movie_img.url(:movie_index), class: "movie-show" %></a>
+  </div>
+
+  <% end %>
+
+<br>

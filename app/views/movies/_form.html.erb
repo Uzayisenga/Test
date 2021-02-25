@@ -1,0 +1,41 @@
+<%= form_for @movie, html: { multipart: true } do |form| %>
+  <% if movie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= movie.errors.count %> are the errors.</h2>
+      <ul>
+      <% movie.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :playtime %>
+    <%= form.number_field :playtime %>
+  </div>
+
+  <div>
+    <%= form.label :director %>
+    <%= form.text_field :director %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :movie_img %>
+    <%= form.file_field :movie_img %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
