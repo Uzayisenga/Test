@@ -16,6 +16,10 @@
   </div>
 
   <div>
+    <%= select_tag(:genre_id, options_for_select(@genres), :prompt => "Select a genre") %>
+  </div>
+
+  <div>
     <%= form.label :playtime %>
     <%= form.number_field :playtime %>
   </div>

@@ -2,7 +2,13 @@ class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.all
+
+    if params[:genre].blank?
+			@movies = Movie.all.order('created_at DESC')
+		else
+			@genre_id = Genre.find_by(name: params[:genre]).id
+			@movies = Movie.where(:genre_id => @genre_id).order("created_at DESC")
+		end
   end
 
   def show
@@ -10,13 +16,16 @@ class MoviesController < ApplicationController
 
   def new
     @movie = current_user.movies.build
+    @genres = Genre.all.map{ |c| [c.name, c.id]}
   end
 
   def edit
+    @genres = Genre.all.map{ |c| [c.name, c.id] }
   end
 
   def create
     @movie = current_user.movies.build(movie_params)
+    @movie.genre_id = params[:genre_id]
     if params[:back]
       render :new
     else
@@ -33,6 +42,7 @@ class MoviesController < ApplicationController
   end
 
   def update
+    @movie.genre_id = params[:genre_id]
 		if @movie.update(movie_params)
 			redirect_to movie_path(@movie)
 		else
