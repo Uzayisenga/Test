@@ -9,14 +9,14 @@ class MoviesController < ApplicationController
   end
 
   def new
-    @movie = Movie.new
+    @movie = current_user.movies.build
   end
 
   def edit
   end
 
   def create
-    @movie = Movie.new(movie_params)
+    @movie = current_user.movies.build(movie_params)
     if params[:back]
       render :new
     else

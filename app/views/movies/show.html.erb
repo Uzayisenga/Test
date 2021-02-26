@@ -25,6 +25,13 @@
   <%= image_tag @movie.movie_img.url(:movie_show), class: "movie-show" %>
 </p>
 
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
+
 <%= link_to 'Back', movies_path %>
-<%= link_to 'Destroy', @movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<% if user_signed_in? %>
+
+		<% if @movie.user_id == current_user.id %>
+      <%= link_to 'Edit', edit_movie_path(@movie) %> |
+      <%= link_to 'Destroy', @movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  <% end %>
