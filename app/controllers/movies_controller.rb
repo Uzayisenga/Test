@@ -1,22 +1,19 @@
 class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
   before_action :set_select_collections, only: [:edit, :new, :create]
+  before_action :authenticate_user!, only: [:edit, :new, :create]
+
 
   def index
-
-    if params[:genre].blank?
+    search = params[:term].present? ? params[:term] : nil
+    @movies = if search
+      Movie.search(search)
+    elsif params[:genre].blank?
 			@movies = Movie.all.order('created_at DESC')
 		else
 			@genre_id = Genre.find_by(name: params[:genre]).id
 			@movies = Movie.where(:genre_id => @genre_id).order("created_at DESC")
 		end
-
-    search = params[:term].present? ? params[:term] : nil
-    @movies = if search
-      Movie.search(search)
-    else
-      Movie.all.order('created_at DESC')
-    end
   end
 
   def show

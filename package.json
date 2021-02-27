@@ -2,6 +2,7 @@
   "name": "hyuga",
   "private": true,
   "dependencies": {
-    "jquery": "^3.5.1"
+    "jquery": "^3.5.1",
+    "toastr": "^2.1.4"
   }
 }
