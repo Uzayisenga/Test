@@ -75,3 +75,7 @@ gem 'paperclip', '~> 6.1'
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 
 gem 'searchkick', '~> 4.3'
+
+gem 'simple_form', '~> 5.1'
+
+gem 'ransack', '~> 2.4', '>= 2.4.2'

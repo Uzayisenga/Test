@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
+  before_action :set_select_collections, only: [:edit, :new, :create]
 
   def index
 
@@ -9,18 +10,28 @@ class MoviesController < ApplicationController
 			@genre_id = Genre.find_by(name: params[:genre]).id
 			@movies = Movie.where(:genre_id => @genre_id).order("created_at DESC")
 		end
+
+    search = params[:term].present? ? params[:term] : nil
+    @movies = if search
+      Movie.search(search)
+    else
+      Movie.all.order('created_at DESC')
+    end
   end
 
   def show
+    if @movie.reviews.blank?
+			@average_review = 0
+		else
+			@average_review = @movie.reviews.average(:rating).round(2)
+		end
   end
 
   def new
     @movie = current_user.movies.build
-    @genres = Genre.all.map{ |c| [c.name, c.id]}
   end
 
   def edit
-    @genres = Genre.all.map{ |c| [c.name, c.id] }
   end
 
   def create
@@ -43,11 +54,11 @@ class MoviesController < ApplicationController
 
   def update
     @movie.genre_id = params[:genre_id]
-		if @movie.update(movie_params)
-			redirect_to movie_path(@movie)
-		else
-			render 'edit'
-		end
+   		if @movie.update(movie_params)
+   			redirect_to movie_path(@movie)
+   		else
+   			render 'edit'
+   		end
   end
 
   def destroy
@@ -58,6 +69,9 @@ class MoviesController < ApplicationController
   private
     def find_movie
       @movie = Movie.find(params[:id])
+    end
+    def set_select_collections
+      @genres = Genre.all.map{ |c| [c.name, c.id] }
     end
 
     def movie_params

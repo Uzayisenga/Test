@@ -1,16 +1,6 @@
 <h1>Editing Movie</h1>
 
-<%= form_for @movie, html: { multipart: true } do |form| %>
-  <% if @movie.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= movie.errors.count %> are the errors.</h2>
-      <ul>
-      <% movie.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for @movie, :html => { :multipart => true } do |form| %>
 
   <div>
     <%= form.label :title %>
@@ -18,7 +8,7 @@
   </div>
 
   <div>
-    <%= form.select :genre_id, @genres %>
+    <%= select_tag(:genre_id, options_for_select(@genres), :promt => "Select a genre") %>
   </div>
 
   <div>

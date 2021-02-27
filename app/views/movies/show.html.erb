@@ -5,6 +5,9 @@
   <%= @movie.title %>
 </p>
 
+<div class="average-review-rating" data-score = <%= @average_review %>></div>
+<span class="number-of-reviews">Based on <%= @movie.reviews.count %> reviews</span>
+
 <p>
   <strong>Genre:</strong>
   <%= @movie.genre.name %>
@@ -30,6 +33,26 @@
   <%= image_tag @movie.movie_img.url(:movie_show), class: "movie-show" %>
 </p>
 
+<div class="row">
+
+	<div class="col-md-4">
+
+		<div class="reviews">
+
+			<!-- Where the reviews/ratings will go -->
+			<h1>Reviews</h1>
+			<%= render @movie.reviews %>
+
+			<div>
+				<%= link_to "Add Review", new_movie_review_path(@movie), class: "btn-custom" %>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
 
 <%= link_to 'Back', movies_path %>
 
@@ -40,3 +63,26 @@
       <%= link_to 'Destroy', @movie, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
   <% end %>
+
+
+
+  <script>
+  	$('.review-rating').raty({
+  		readOnly: true,
+  		score: function() {
+  			return $(this).attr('data-score');
+  		},
+  		path: '/assets/'
+  	});
+  </script>
+
+
+  <script>
+  	$('.average-review-rating').raty({
+  		readOnly: true,
+  		path: '/assets/',
+  		score: function() {
+  			return $(this).attr('data-score')
+  		}
+  	});
+  </script>

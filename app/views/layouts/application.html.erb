@@ -16,7 +16,7 @@
     		<div class="container">
 
     			<div class="navbar-header">
-    				<%= link_to "Book Review", root_path, class: "navbar-brand" %>
+    				<%= link_to "Movie Review", root_path, class: "navbar-brand" %>
     			</div>
 
     			<ul class="nav navbar-nav">
@@ -27,6 +27,24 @@
     					<li><%= link_to "Log In", new_user_session_path %></li>
     				<% end %>
     			</ul>
+          <ul class="nav navbar-nav">
+            <li>
+              <%= form_tag(movies_path, method: :get, class: "form-inline", role: 'search') do %>
+        <div class="input-group">
+          <%= text_field_tag :term,
+              params[:term],
+              id: 'movies_search',
+              placeholder: 'Search',
+              class: 'form-control' %>
+          <div class="input-group-btn search-panel">
+            <%= link_to 'Clear', root_url, class: "btn btn-default" %>
+            <%= submit_tag 'Search', name: nil, class: "btn btn-default" %>
+          </div>
+        </div>
+      <% end %>
+            </li>
+          </ul>
+
 
     			<ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -41,11 +59,11 @@
 				</li>
 
 
-
-
     				<% if user_signed_in? %>
     					<li><%= link_to "Add Movie", new_movie_path %></li>
     				<% end %>
+
+
 
     			</ul>
 
