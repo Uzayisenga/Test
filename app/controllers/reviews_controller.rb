@@ -4,7 +4,12 @@ class ReviewsController < ApplicationController
 	before_action :authenticate_user!, only: [:new, :edit]
 
 	def new
-		@review = Review.new
+    if current_user
+    @review = Review.where(user_id: current_user.id, movie_id: params[:movie_id]).first_or_initialize
+    if @review.id.present?
+      render 'edit'
+    end 
+  end
 	end
 
 	def create

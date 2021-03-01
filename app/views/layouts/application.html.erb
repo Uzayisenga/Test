@@ -37,7 +37,9 @@
     			</ul>
           <ul class="nav navbar-nav">
             <li>
-              <%= form_tag(movies_path, method: :get, class: "form-inline", role: 'search') do %>
+
+	             <%= form_tag(movies_path, method: :get, class: "form-inline", role: 'search') do %>
+
         <div class="input-group">
           <%= text_field_tag :term,
               params[:term],
@@ -66,11 +68,14 @@
 					</ul>
 				</li>
 
-
-    				<% if user_signed_in? %>
+            <% if signed_in? %>
+    				  <% if current_user.superadmin_role? || current_user.contributor_role? %>
     					<li><%= link_to "Add Movie", new_movie_path %></li>
-    				<% end %>
-
+              <% end %>
+              <% if current_user.superadmin_role? %>
+              <li><%= link_to "Admin dashboard", rails_admin_path %></li>
+            <% end %>
+            <% end %>
 
 
     			</ul>

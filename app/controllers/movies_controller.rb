@@ -1,8 +1,8 @@
 class MoviesController < ApplicationController
+  load_and_authorize_resource
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
   before_action :set_select_collections, only: [:edit, :new, :create]
   before_action :authenticate_user!, only: [:edit, :new, :create]
-
 
   def index
     search = params[:term].present? ? params[:term] : nil
