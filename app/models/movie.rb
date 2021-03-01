@@ -2,7 +2,7 @@ class Movie < ApplicationRecord
   belongs_to :user
   belongs_to :genre
   has_many :reviews
-  searchkick word_start: [:title, :description, :director]
+  searchkick word_middle: [:title, :description, :director]
 
   def search_data
     {

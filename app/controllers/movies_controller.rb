@@ -16,6 +16,12 @@ class MoviesController < ApplicationController
 		end
   end
 
+  def approve
+  if can? :approve, Movie
+    @movie.update_attributes approved: true
+  end
+end
+
   def show
     if @movie.reviews.blank?
 			@average_review = 0

@@ -82,4 +82,6 @@ gem 'ransack', '~> 2.4', '>= 2.4.2'
 
 gem 'toastr-rails'
 
-gem 'jquery-rails'
+gem 'rails_admin', '~> 2.0'
+
+gem 'cancancan'
