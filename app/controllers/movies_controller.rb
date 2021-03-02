@@ -3,6 +3,7 @@ class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
   before_action :set_select_collections, only: [:edit, :new, :create]
   before_action :authenticate_user!, only: [:edit, :new, :create]
+  PER = 1
 
   def index
     search = params[:term].present? ? params[:term] : nil
@@ -49,10 +50,6 @@ end
         render :new
       end
     end
-  end
-
-  def confirm
-    @movie = Movie.new(movie_params)
   end
 
   def update
