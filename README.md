@@ -29,8 +29,11 @@ ERD flowchat: https://drive.google.com/file/d/1nCHTNKJABl_LLy3-r4uBKlkOjOZCh4c7/
 Gems and functions
 - Devise
 - comment function
-- carrierwave
-- mini_magick
-- searchkick
-- dotenv-rails
 - paperclip
+- searchkick
+- paperclip
+- image_magic
+- simple_form
+- rails_admin
+- bootstrap_Sass
+- cancancan
