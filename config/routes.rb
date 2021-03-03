@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show, :edit, :update]
   resources :genres
+  get 'search', to: 'movies#search'
 
   resources :movies do
+
     resources :reviews
   end
   root 'movies#index'

@@ -1,20 +1,29 @@
 class MoviesController < ApplicationController
   load_and_authorize_resource
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
-  before_action :set_select_collections, only: [:edit, :new, :create]
+  #before_action :set_select_collections, only: [:edit, :new, :create]
   before_action :authenticate_user!, only: [:edit, :new, :create]
 
   def index
-    search = params[:term].present? ? params[:term] : nil
-    @movies = if search
-      Movie.search(search)
-    elsif params[:genre].blank?
-			@movies = Movie.all.order('created_at DESC').page(params[:page])
-		else
-			@genre_id = Genre.find_by(name: params[:genre]).id
-			@movies = Movie.where(:genre_id => @genre_id).order("created_at DESC").page(params[:page])
+  #  search = params[:term].present? ? params[:term] : nil
+  #  @movies = if search
+  #    Movie.search(search)
+    if params[:genre].blank?
+  		@movies = Movie.all.order('created_at DESC').page(params[:page])
+  	else
+  		@genre_id = Genre.find_by(name: params[:genre]).id
+  		@movies = Movie.where(:genre_id => @genre_id).order("created_at DESC").page(params[:page])
 		end
   end
+
+  def search
+  if params[:search].blank?
+    redirect_to(root_path, alert: "Empty field!") and return
+  else
+    @movies = params[:search].downcase
+    @results = Movie.all.where("lower(title) LIKE :search", search: @movies)  
+  end
+end
 
   def approve
   if can? :approve, Movie
@@ -69,9 +78,9 @@ end
     def find_movie
       @movie = Movie.find(params[:id])
     end
-    def set_select_collections
-      @genres = Genre.all.map{ |c| [c.name, c.id] }
-    end
+    #def set_select_collections
+    #  @genres = Genre.all.map{ |c| [c.name, c.id] }
+  #  end
 
     def movie_params
       params.require(:movie).permit(:title, :playtime, :director, :description, :movie_img)
