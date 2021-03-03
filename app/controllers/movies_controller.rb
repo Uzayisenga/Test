@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   load_and_authorize_resource
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
-  #before_action :set_select_collections, only: [:edit, :new, :create]
+  before_action :set_select_collections, only: [:edit, :new, :create]
   before_action :authenticate_user!, only: [:edit, :new, :create]
 
   def index
@@ -21,7 +21,7 @@ class MoviesController < ApplicationController
     redirect_to(root_path, alert: "Empty field!") and return
   else
     @movies = params[:search].downcase
-    @results = Movie.all.where("lower(title) LIKE :search", search: @movies)  
+    @results = Movie.all.where("lower(title) LIKE :search", search: @movies)
   end
 end
 
@@ -78,9 +78,9 @@ end
     def find_movie
       @movie = Movie.find(params[:id])
     end
-    #def set_select_collections
-    #  @genres = Genre.all.map{ |c| [c.name, c.id] }
-  #  end
+    def set_select_collections
+      @genres = Genre.all.map{ |c| [c.name, c.id] }
+   end
 
     def movie_params
       params.require(:movie).permit(:title, :playtime, :director, :description, :movie_img)
