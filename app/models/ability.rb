@@ -21,7 +21,7 @@ class Ability
       can :manage, Movie
     end
     if user.user_role?
-      can :read, Movie
+      can :manage, Movie
     end
 
 

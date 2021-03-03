@@ -66,10 +66,6 @@ gem "devise", "~> 4.7"
 
 gem "dotenv-rails", "~> 2.7"
 
-gem "omniauth", "~> 1.9"
-
-gem "omniauth-github", "~> 1.4"
-
 gem 'paperclip', '~> 6.1'
 
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
@@ -78,12 +74,14 @@ gem 'searchkick', '~> 4.3'
 
 gem 'simple_form', '~> 5.1'
 
-gem 'ransack', '~> 2.4', '>= 2.4.2'
-
 gem 'toastr-rails'
 
 gem 'rails_admin', '~> 2.0'
 
 gem 'cancancan'
+
+gem 'better_errors', '~> 2.9', '>= 2.9.1'
+
+gem 'binding_of_caller'
 
 gem 'kaminari'

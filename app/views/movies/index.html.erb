@@ -1,7 +1,7 @@
 <h1>Movies</h1>
-<%= link_to 'New Movie', new_movie_path %>
 
   <% @movies.each do |movie| %>
+  <% if movie.status == "published" %>
   <div class="">
     <p><%= movie.title %></p>
     <a href="/movies/<%= movie.id %>">
@@ -9,4 +9,6 @@
   </div>
 
   <% end %>
+<% end %>
 <br>
+<%= paginate @movies %>

@@ -18,3 +18,6 @@
 //= require bootstrap-sprockets
 //= require toastr
 //= require_tree .
+$(function () {
+$("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+});

@@ -38,20 +38,15 @@
           <ul class="nav navbar-nav">
             <li>
 
-	             <%= form_tag(movies_path, method: :get, class: "form-inline", role: 'search') do %>
-
-        <div class="input-group">
-          <%= text_field_tag :term,
-              params[:term],
-              id: 'movies_search',
-              placeholder: 'Search',
-              class: 'form-control' %>
-          <div class="input-group-btn search-panel">
-            <%= link_to 'Clear', root_url, class: "btn btn-default" %>
-            <%= submit_tag 'Search', name: nil, class: "btn btn-default" %>
-          </div>
-        </div>
-      <% end %>
+	        <%= form_tag(movies_path, method: :get, class: "form-inline", role: 'search') do %>
+            <div class="input-group">
+              <%= text_field_tag :term, params[:term],  id: 'movies_search',  placeholder: 'Search',  class: 'form-control' %>
+              <div class="input-group-btn search-panel">
+                <%= link_to 'Clear', root_url, class: "btn btn-default" %>
+                <%= submit_tag 'Search', name: nil, class: "btn btn-default" %>
+              </div>
+            </div>
+          <% end %>
             </li>
           </ul>
 
@@ -69,9 +64,8 @@
 				</li>
 
             <% if signed_in? %>
-    				  <% if current_user.superadmin_role? || current_user.contributor_role? %>
+
     					<li><%= link_to "Add Movie", new_movie_path %></li>
-              <% end %>
               <% if current_user.superadmin_role? %>
               <li><%= link_to "Admin dashboard", rails_admin_path %></li>
             <% end %>
