@@ -5,9 +5,6 @@ class MoviesController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :new, :create]
 
   def index
-  #  search = params[:term].present? ? params[:term] : nil
-  #  @movies = if search
-  #    Movie.search(search)
     if params[:genre].blank?
   		@movies = Movie.all.order('created_at DESC').page(params[:page])
   	else
@@ -17,13 +14,8 @@ class MoviesController < ApplicationController
   end
 
   def search
-  if params[:search].blank?
-    redirect_to(root_path, alert: "Empty field!") and return
-  else
-    @movies = params[:search].downcase
-    @results = Movie.all.where("lower(title) LIKE :search", search: @movies)
+    @movies = Movie.where("lower(title) LIKE ?", "%" + params[:q] + "%").page(params[:page])
   end
-end
 
   def approve
   if can? :approve, Movie

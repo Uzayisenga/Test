@@ -1,6 +1,6 @@
 <h1>Search Results</h1>
 
-<% @results.each do |movie| %>
+<% @movies.each do |movie| %>
 <% if movie.status == "published" %>
 <div class="">
   <p><%= movie.title %></p>
@@ -10,3 +10,5 @@
 
 <% end %>
 <% end %>
+
+<%= paginate @movies %>
